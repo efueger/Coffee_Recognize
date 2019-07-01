@@ -7,7 +7,7 @@ node_js:
 
 env:
   global:
-    - CC_TEST_REPORTER_ID=6f9ccfe3bc4a26266bdc04bad4fc976ef51ef70f6a60207432951b84f8bbc606
+    - CC_TEST_REPORTER_ID=a3bb29cab25ddcb6463456d4bb1842481ed1726bd7b8e5b68d1fbe5d40830fe8
 
 addons:
   apt:
@@ -23,14 +23,14 @@ cache:
 install:
   - npm install
 
-# before_script:
-  # - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
-  # - chmod +x ./cc-test-reporter
-  # - ./cc-test-reporter before-build
+before_script:
+  - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+  - chmod +x ./cc-test-reporter
+  - ./cc-test-reporter before-build
 
 script:
   - npm run test -- --watch=false --no-progress --browsers=ChromeHeadlessNoSandbox
   
 
-# after_script:
-#   - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
+after_script:
+  - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
